@@ -1,6 +1,8 @@
 # ToDo API – ASP.NET Core
 
-Pequeno projeto desenvolvido em **ASP.NET** Core para gerenciamento de tarefas, utilizando boas praticas de desenvolvimento utilizadas no mercado
+Pequeno projeto desenvolvido em **ASP.NET Core** para gerenciamento de tarefas, utilizando boas praticas de desenvolvimento utilizadas no mercado
+
+Projeto criado para fins de **portfólio**.
 
 Projeto criado para fins de **portfólio**.
 
@@ -9,7 +11,7 @@ Projeto criado para fins de **portfólio**.
 ## Tecnologias
 
 - ASP.NET Core
-- Entity Framework Core versão 10.0
+- Entity Framework Core
 - SQLite
 - LINQ
 - Swagger
@@ -77,10 +79,9 @@ Acesse o Swagger em:
 ```
 https://localhost:{porta}/swagger
 ```
-Ou se preferir baixe a collection do postman neste link
-```
-https://github.com/gabrielfl1/ToDoProject/blob/main/Postman/ToDo%20Collection.postman_collection.json
-```
+Ou se preferir baixe a collection do postman neste link:  
+[postman collection.json](https://github.com/gabrielfl1/ToDoProject/blob/main/Postman/ToDo%20Collection.postman_collection.json)
+
 ---
 
 ## Autor
