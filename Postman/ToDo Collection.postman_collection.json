@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "d9a3e4eb-ff17-4d0c-a57e-edf255fddd0b",
+		"name": "ToDo Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37110722"
+	},
+	"item": [
+		{
+			"name": "Criar uma tarefa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"teste titulo\",\r\n  \"priority\": 5,\r\n\r\n  //opcional\r\n  \"description\": \"teste descrição da tarefa\",\r\n  \"dueDate\": \"2025-12-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5132/v1/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar uma tarefa completa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"teste titulo novo\",\r\n  \"isCompleted\" : false,\r\n  \"priority\": 5,\r\n  \r\n  // opcional\r\n  \"description\": \"teste descrição da tarefa\",\r\n  \"dueDate\": \"2025-12-21\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5132/v1/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar uma tarefa parcial",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  //opcional\r\n  \"title\": \"teste titulo\",\r\n  \"description\": \"teste descrição da tarefa\",\r\n  \"priority\": 5,\r\n  \"dueDate\": \"2025-12-21\",\r\n  \"isCompleted\" : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5132/v1/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas as tarefas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5132/v1/todos?page=0&pagesize=10&isCompleted=0&priority=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "pagesize",
+							"value": "10"
+						},
+						{
+							"key": "isCompleted",
+							"value": "0"
+						},
+						{
+							"key": "priority",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar uma tarefa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5132/v1/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar uma tarefa Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5132/v1/todos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5132",
+					"path": [
+						"v1",
+						"todos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
