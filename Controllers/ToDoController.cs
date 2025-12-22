@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 using TodoList.Data;
+using TodoList.DTOs;
 using TodoList.DTOs.ToDos;
 using TodoList.Extensions;
 using TodoList.Models;
@@ -14,10 +15,34 @@ namespace TodoList.Controllers {
 
         [HttpGet]
         public async Task<IActionResult> Get(
-            [FromServices] ToDoListDataContext context) {
+            [FromServices] ToDoListDataContext context,
+            [FromQuery] ToDoQueryDto dto) {
             try {
-                var toDos = await context.ToDos
-                    .AsNoTracking()
+
+                if (!ModelState.IsValid)
+                    return BadRequest(new ResultViewModel<string>(ModelState.GetErrors()));
+
+
+                var page = dto.Page;
+                var pageSize = dto.PageSize;
+                var isCompleted = dto.IsCompleted;
+                var priority = dto.Priority;
+
+                IQueryable<ToDo> contextQuery = context.ToDos.AsNoTracking();
+
+                if (isCompleted == 0) {
+                    contextQuery = contextQuery.Where(x => x.IsCompleted == false);
+                }
+                else if (isCompleted == 1) {
+                    contextQuery = contextQuery.Where(x => x.IsCompleted == true);
+                }
+
+                if (priority > 0) {
+                    contextQuery = contextQuery.Where(x => x.Priority == priority);
+                }
+
+                var count = await contextQuery.CountAsync();
+                var toDos = await contextQuery
                     .Select(x => new ResponseToDoDto {
                         Id = x.Id,
                         Title = x.Title,
@@ -28,9 +53,19 @@ namespace TodoList.Controllers {
                         DueDate = x.DueDate,
 
                     })
+                    .OrderBy(x => x.CreatedAt)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
                     .ToListAsync();
 
-                return Ok(new ResultViewModel<List<ResponseToDoDto>>(toDos));
+                var result = new PagedResultDto<ResponseToDoDto> {
+                    Itens = toDos,
+                    Total = count,
+                    Page = page,
+                    PageSize = pageSize
+                };
+
+                return Ok(new ResultViewModel<PagedResultDto<ResponseToDoDto>>(result));
             }
             catch (DbException) {
                 return BadRequest(new ResultViewModel<string>("01x01 Erro ao consultar o banco"));
