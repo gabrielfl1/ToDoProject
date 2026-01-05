@@ -2,7 +2,7 @@
 
 Pequeno projeto desenvolvido em **ASP.NET Core** para gerenciamento de tarefas, utilizando boas praticas de desenvolvimento utilizadas no mercado
 
-Projeto criado para fins de **portfólio**.
+Projeto desenvolvido para demonstrar conhecimentos em **APIs REST** com **ASP.NET Core**.
 
 ---
 
